@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <link rel="stylesheet" href = "restaurantStyle.css">
+        <link rel="shortcut icon" type="image/png" href="icon.png"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Order Food</title>
+    </head>
+    <body>
+        <div class="searchBar">
+            <input id="searchText" type="text" placeholder="Search for Restaurant..">
+            <button class ="submitButton" type="button" value="">Submit</button>
+            <div class="btn-group">
+                <span title="Filter List">
+                    <button id="filterList"><i class="fa fa-filter"></i></button>
+                </span>
+                <span title="Sort List">
+                    <button id="sortList"><i class="fa fa-sort"></i></button> 
+                </span>
+                <span title="Favourites">
+                    <button id="showFavorite"><i class="fa fa-star"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="parentSection"><div class="attachHTML"></div></div>
+        <script src = "restaurantJS.js"></script>
+    </body>
+</html>

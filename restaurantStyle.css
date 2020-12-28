@@ -1,0 +1,63 @@
+body{
+    height: 100%;
+    width: 100%;
+    background-color: lemonchiffon ;
+}
+#searchText,.btn-group{
+    display: inline;
+}
+::placeholder{
+    font-size: 130%;
+    color: darkolivegreen;
+}
+.searchBar{
+    text-align: center;
+}
+#searchText{
+    margin-top: 2%;
+    margin-bottom: 4%;
+    width: 30%;
+    height: 6%;
+}
+.submitButton{
+    height: 6%;
+    font-size: 90%;
+}
+.btn-group{
+    margin-left: 10%;
+}
+#filterList,#sortList,#showFavorite{
+    height: 5%;
+    width: 3%;
+    border-radius: 0.1px 0.5rem;
+    background-color: lemonchiffon;
+}
+.fa{
+    font-size: x-large;
+}
+.submitButton,.fa:hover{
+    cursor: pointer;
+}
+section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+article {
+flex: 1 350px;
+background-color: wheat;
+padding: 10px;
+margin: 10px;
+}
+article div{
+    text-align: center;
+}  
+.favBtn{
+    float: right;
+}
+.fa-star{
+    color: royalblue;
+}
+
+
+
