@@ -62,6 +62,10 @@ class Restaurant {
 const searchBar = document.querySelector('.searchBar');
 const parentSection = document.querySelector('.parentSection');
 const attachHTML = document.querySelector('.attachHTML');
+const submitButton = document.querySelector('.submitButton');
+const searchText = document.getElementById('searchText');
+const searchList = document.querySelector('.searchList');
+const attachSugg = document.querySelector('.attachSugg');
 
 class RestaurantList{
     #allData = [];
@@ -71,7 +75,32 @@ class RestaurantList{
         this._setList();
         
         parentSection.addEventListener('click',this._addToFav.bind(this));
+        searchText.addEventListener('input',this._renderSearchResult.bind(this));
+        submitButton.addEventListener('click',this._getSearchedHotel.bind(this));
+        // searchList click event listener -> searchText.value = name from id
     }
+    _getList = () =>{
+        //console.log(searchText.value);
+        let restName = searchText.value;
+        if(restName){
+            // set drop down items
+            searchList.style.display = "block";
+        }else{
+            searchList.style.display = "none";
+        }
+    }
+    _debounce = function(fn,d){
+        let timer;
+        return function(){
+            let context = this;
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                fn.apply(context);
+            },d);
+        }
+    }
+    _renderSearchResult = this._debounce(this._getList,1000);
+
     _addToFav(e){
         console.log(e.target.id);
         let checkId = e.target.id.split('-');
@@ -86,14 +115,24 @@ class RestaurantList{
             }
         });
         localStorage.setItem("favList",JSON.stringify(tempList));
-        //this._setList();
+        location.reload();
     }
     _getData = () => {
         let data = JSON.parse(restaurantData).restaurants;
         this.#fav = JSON.parse(localStorage.getItem("favList"));
         console.log(this.#fav);
+        var favSet = new Set();
+        if(this.#fav){
+            this.#fav.forEach(fv =>{
+                favSet.add(fv.id);
+            });
+        }
         data.forEach(dt =>{
-            dt.addedFav = false;
+            if(favSet.has(dt.id)){
+                dt.addedFav = true;
+            }else{
+                dt.addedFav = false;
+            }
         })
         this.#allData = data;
         console.log(this.#allData);
@@ -122,6 +161,18 @@ class RestaurantList{
             </article>`;
 
         return html;
+    }
+    _getSearchedHotel(){
+        var searchHotel = searchText.value;
+        console.log(searchHotel);
+        if(!searchHotel){
+            //show all
+        }else{
+            // search name in data
+
+            //if found then return
+            // else - no results found
+        }
     }
 }
 
